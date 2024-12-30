@@ -1,14 +1,14 @@
-const features = {};
+const featureFxns = {};
 
-features.getPathCnt =(paths) =>{
+featureFxns.getPathCnt =(paths) =>{
     return paths.length;
 }
 
-features.getPntCnt =(paths) =>{
+featureFxns.getPntCnt =(paths) =>{
     const pnts =  paths.flat();
     return pnts.length;
 }
 
 if(typeof module !== 'undefined' && module.exports){
-    module.exports = features;
+    module.exports = featureFxns;
 }

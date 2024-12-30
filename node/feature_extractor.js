@@ -1,5 +1,5 @@
 const constants = require('../common/constants.js');
-const features = require('../common/features.js');
+const featureFxns = require('../common/featureFxns.js');
 
 const fs = require('fs');
 
@@ -16,8 +16,8 @@ for(const sample of samples){
         )
     );
     sample.point = [
-        features.getPathCnt(paths),
-        features.getPntCnt(paths)
+        featureFxns.getPathCnt(paths),
+        featureFxns.getPntCnt(paths)
     ]
 }
 
