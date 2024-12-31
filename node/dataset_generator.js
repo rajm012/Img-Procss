@@ -8,6 +8,19 @@ const ctx = canvas.getContext('2d');
 
 const fs = require('fs');
 
+if(fs.existsSync(constants.DATASET_DIR)){
+    
+    fs.readdirSync(constants.DATASET_DIR).forEach(fileName => 
+       fs.rmSync(constants.DATASET_DIR+"/"+fileName,{recursive:true}
+    ));
+    fs.rmdirSync(constants.DATASET_DIR);
+}
+
+fs.mkdirSync(constants.DATASET_DIR);
+fs.mkdirSync(constants.JSON_DIR);
+fs.mkdirSync(constants.IMG_DIR);
+console.log("GENERATING DATASET ...");
+
 const fileNames = fs.readdirSync(constants.RAW_DIR);
 
 if (fileNames.length === 0) {
@@ -62,6 +75,8 @@ if (samples.length === 0) {
 }
 
 fs.writeFileSync(constants.SAMPLES, JSON.stringify(samples, null, 2));
+
+fs.mkdirSync(constants.JS_OBJECTS, {recursive: true});
 
 fs.writeFileSync(constants.SAMPLES_JS, 
     "const samples=" + JSON.stringify(samples, null, 2) + ";"
