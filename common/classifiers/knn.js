@@ -1,4 +1,6 @@
-utils = require("../utils.js");
+if(typeof require !== 'undefined'){
+    utils = require("../utils.js");
+}
 
 class KNN{
     constructor(samples, k){
