@@ -20,11 +20,31 @@ for(const sample of samples){
     sample.point = functions.map(f => f(paths));
 }
 
+const featuresNames = featureFxns.inUse.map(f => f.name);
+
+console.log("Generating Splits...");
+
+const trainLen = samples.length*0.5;
+
+const training = [];
+const testing = [];
+
+for(let i=0;i<samples.length;i++){
+    if(i<trainLen){
+        training.push(samples[i]);
+    }
+    else{
+        testing.push(samples[i]);
+    }
+}
+
 const minMax = utils.normalizePoints(
-    samples.map(s => s.point)
+    training.map(s => s.point)
 );
 
-const featuresNames = featureFxns.inUse.map(f => f.name);
+utils.normalizePoints(
+    testing.map(s => s.point),minMax
+);
 
 fs.writeFileSync(constants.FEATURES,
     JSON.stringify({
@@ -44,6 +64,43 @@ fs.writeFileSync(constants.FEATURES_JS,
     ;`
 );
  
+fs.writeFileSync(constants.TRAINING,
+    JSON.stringify({
+        featuresNames,
+        samples: training.map(s=>{
+            return {
+                point:s.point,
+                label:s.label
+            };
+        })
+    })
+);
+
+fs.writeFileSync(constants.TRAINING_JS,
+    `const training=
+    ${JSON.stringify({featuresNames,samples:training})}
+    ;`
+);
+
+
+fs.writeFileSync(constants.TESTING,
+    JSON.stringify({
+        featuresNames,
+        samples: testing.map(s=>{
+            return {
+                point:s.point,
+                label:s.label
+            };
+        })
+    })
+);
+
+fs.writeFileSync(constants.TESTING_JS,
+    `const testing=
+    ${JSON.stringify({featuresNames,samples:testing})}
+    ;`
+);
+
 fs.writeFileSync(constants.MIN_MAX_JS,
     `const minMax=
     ${JSON.stringify(minMax)}
