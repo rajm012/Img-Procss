@@ -100,9 +100,9 @@ This project implements a K-Nearest Neighbors (KNN) classifier and provides an i
 
 | Feature                 | Screenshot                          |
 |-------------------------|--------------------------------------|
-| Dataset Visualization   | ![Dataset](../Img%20Procss/ScreenShots/1-Display.png) |
-| Accuracy Results        | ![Results](../Img%20Procss/ScreenShots/3-Tested%20Samples.png) |
-| Live Testing            | ![Testing](../Img%20Procss/ScreenShots/5-Testing.png) |  
+| Dataset Visualization   | 1-Display.png |
+| Accuracy Results        | 3-TestedSamples.png |
+| Live Testing            | 5-Testing.png |  
 
 ---
 
@@ -117,7 +117,7 @@ This project implements a K-Nearest Neighbors (KNN) classifier and provides an i
 
 ## License
 
-Open-source under the [MIT License](../LICENSE).Feel free to use and modify the code as required.
+Open-source under the [MIT License](../LICENSE). Feel free to use and modify the code as required.
 
 ---
 
