@@ -76,6 +76,12 @@ fs.writeFileSync(constants.TRAINING,
     })
 );
 
+fs.writeFileSync(constants.TRAINING_CSV,
+    utils.toCSV([...featuresNames,"Label"],
+        training.map(s=>[...s.point,s.label])
+    )
+);
+
 fs.writeFileSync(constants.TRAINING_JS,
     `const training=
     ${JSON.stringify({featuresNames,samples:training})}
@@ -93,6 +99,12 @@ fs.writeFileSync(constants.TESTING,
             };
         })
     })
+);
+
+fs.writeFileSync(constants.TESTING_CSV,
+    utils.toCSV([...featuresNames,"Label"],
+        testing.map(s=>[...s.point,s.label])
+    )
 );
 
 fs.writeFileSync(constants.TESTING_JS,
